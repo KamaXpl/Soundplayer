@@ -1,0 +1,8 @@
+DebtyVibe - nazwa
+Rozpoczęcie - 21.11.2023
+Kod główny - 22.11 - 17.12 ostateczny proponowany termin
+Kod poboczny - po zakonczeniu kodu glownego
+Interfejs - 22.11 - 17.12 ostateczny
+Sound list - 22.11 - 10.12 
+README - Last week
+Dokumentacja - Ostatni tydzien projektu
