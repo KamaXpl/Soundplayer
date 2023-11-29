@@ -33,4 +33,23 @@ panel_frame.place(x=250,y=700)
 ad_frame = ctk.CTkFrame(master=root, width=800,height=600, fg_color="#202020", border_color="#232323", border_width=7)  # reklama
 ad_frame.place(x=160,y=50)
 
+settings_label = ctk.CTkLabel(master=root, text="Playlist", fg_color="#181818", text_color="#720404", font=("Impact", 48))
+settings_label.place(x=1030,y=5)
+
+logo_image = ctk.CTkImage(Image.open(r"C:\xampp\htdocs\Wydra\Soundplayer\logo.jpg"), size=(90, 90)) # do podmiany zdjecie i sciezka
+logo_button = ctk.CTkLabel(master=root, text="", image=logo_image)
+logo_button.place(x=10,y=0)
+
+sign_out_image = ctk.CTkImage(Image.open(r"C:\xampp\htdocs\Wydra\Soundplayer\sign_out.png"), size=(100, 100)) # do podmiany zdjecie i sciezka
+sign_out_button = ctk.CTkLabel(master=root, text="", image=sign_out_image)
+sign_out_button.place(x=0,y=800)
+
+settings_image = ctk.CTkImage(Image.open(r"C:\xampp\htdocs\Wydra\Soundplayer\sett.png"), size=(100, 100)) # do podmiany zdjecie i sciezka
+settings_button = ctk.CTkLabel(master=root, text="", image=settings_image)
+settings_button.place(x=0,y=900)
+
+
+
+
+
 root.mainloop()
