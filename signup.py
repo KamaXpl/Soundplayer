@@ -14,26 +14,21 @@ y = (screen_height - window_height) // 4
 sign_up.geometry('{}x{}+{}+{}'.format(window_width, window_height, x, y))
   
 def sign_up_def(): 
-  
-    username = "1"
-    password = "1"
-    signin_window = ctk.CTkToplevel(sign_up) 
-  
-    signin_window.title("New Window") 
-  
-    signin_window.geometry("350x150") 
-  
+    us = "user"
+    pas = "passwords"
+
     user_entry.get()
     user_pass.get()
-    if user_entry.get() == username and user_pass.get() == password: 
+    if len(user_entry.get()) >= 3 and len(user_pass.get()) >= 7: 
+        tkmb.showinfo(title="DebtyVibe", message="Utworzono konto! \n Teraz możesz sie zalogować do DebtyVibe!")
         sign_up.destroy()
-        from sound import root
-    elif user_entry.get() == username and user_pass.get() != password: 
-        tkmb.showwarning(title='Wrong password',message='Please check your password') 
-    elif user_entry.get() != username and user_pass.get() == password: 
-        tkmb.showwarning(title='Wrong username',message='Please check your username') 
+        from signin import sign_in
+    elif len(user_entry.get()) >= 3 and str(user_pass.get()) != 7: 
+        tkmb.showwarning(title='DebtyVibe',message='Niepoprawne hasło!') 
+    elif len(user_entry.get()) != 3 and len(user_pass.get()) >= 7: 
+        tkmb.showwarning(title='DebtyVibe',message='Niepoprawna nazwa!') 
     else: 
-        tkmb.showerror(title="Login Failed",message="Invalid Username and password") 
+        tkmb.showerror(title="DebtyVibe",message="Niepoprawna nazwa i hasło!") 
 
 welcome_label = ctk.CTkLabel(sign_up,text="Witaj w DebtyVibe!") 
 welcome_label.pack(pady=20) 

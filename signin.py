@@ -17,12 +17,7 @@ def sign_in_def():
   
     username = "1"
     password = "1"
-    signin_window = ctk.CTkToplevel(sign_in) 
-  
-    signin_window.title("New Window") 
-  
-    signin_window.geometry("350x150") 
-  
+
     if user_entry.get() == username and user_pass.get() == password: 
         sign_in.destroy()
         from sound import root
