@@ -31,8 +31,14 @@ settings_frame.place(x=0,y=0)
 song_list_frame = ctk.CTkFrame(master=root, width=900,height=650, fg_color="#181818", border_color="#161616", border_width=7)   # ramka playlisty
 song_list_frame.place(x=1020,y=0) 
 
+song_frame = ctk.CTkFrame(master=root, width=800,height=500, fg_color="#1A1A1A", border_color="#5A0000", border_width=7)  # reklama
+song_frame.place(x=1070,y=100)
+
 mixer_frame = ctk.CTkFrame(master=root, width=900,height=600, fg_color="#181818", border_color="#161616", border_width=7)   # ramka mikseru
 mixer_frame.place(x=1020,y=640)
+
+fav_song_frame = ctk.CTkFrame(master=root, width=800,height=250, fg_color="#1A1A1A", border_color="#5A0000", border_width=7)  # reklama
+fav_song_frame.place(x=1070,y=720)
 
 panel_frame = ctk.CTkFrame(master=root, width=600,height=200, fg_color="#202020", border_color="#232323", border_width=7) # ramka panelu
 panel_frame.place(x=250,y=700)
@@ -54,32 +60,43 @@ def unpause():
     pygame.mixer.music.unpause()
 
 volume_changer = ctk.CTkSlider(root, from_=0, to=100, command=volumechanger)
-volume_changer.place(x=450, y=870)
+volume_changer.place(x=450, y=860)
 
-play_image = ctk.CTkImage(Image.open("playbtn.png"), size=(30,30))
+play_image = ctk.CTkImage(Image.open(r".\images\playbtn.png"), size=(30,30))
 play_btn = ctk.CTkButton(master=root, text="", image=play_image, width=30, height=30, fg_color="#181818", command=play)
-play_btn.place(x=400, y=800)
+play_btn.place(x=480, y=800)
 
-pause_image = ctk.CTkImage(Image.open("playbtn.png"), size=(30,30))
+pause_image = ctk.CTkImage(Image.open(r".\images\playbtn.png"), size=(30,30))
 pause_btn = ctk.CTkButton(master=root, text="", image=play_image, width=30, height=30, fg_color="#181818", command=pause)
-pause_btn.place(x=450, y=800)
+pause_btn.place(x=530, y=800)
 
-unpause_image = ctk.CTkImage(Image.open("playbtn.png"), size=(30,30))
+unpause_image = ctk.CTkImage(Image.open(r".\images\playbtn.png"), size=(30,30))
 unpause_btn = ctk.CTkButton(master=root, text="", image=play_image, width=30, height=30, fg_color="#181818", command=unpause)
-unpause_btn.place(x=500, y=800)
+unpause_btn.place(x=580, y=800)
+
+prev_image = ctk.CTkImage(Image.open(r".\images\prevbtn.png"), size=(30,30))
+prev_btn = ctk.CTkButton(master=root, text="", image=prev_image, width=30, height=30, fg_color="#181818", command=unpause)
+prev_btn.place(x=430, y=800)
+
+next_image = ctk.CTkImage(Image.open(r".\images\nextbtn.png"), size=(30,30))
+next_btn = ctk.CTkButton(master=root, text="", image=next_image, width=30, height=30, fg_color="#181818", command=unpause)
+next_btn.place(x=630, y=800)
 
 playlist_label = ctk.CTkLabel(master=root, text="Playlist", fg_color="#181818", text_color="#720404", font=("Impact", 48))
 playlist_label.place(x=1030,y=5)
 
-logo_image = ctk.CTkImage(Image.open("logo.jpg"), size=(90, 90)) # do podmiany zdjecie i sciezka
-logo_button = ctk.CTkLabel(master=root, text="", image=logo_image)
-logo_button.place(x=0,y=0)
+fav_songs_label = ctk.CTkLabel(master=root, text="Favorite Songs", fg_color="#181818", text_color="#720404", font=("Impact", 48))
+fav_songs_label.place(x=1030,y=645)
 
-sign_out_image = ctk.CTkImage(Image.open("sign_out.png"), size=(80, 80)) # do podmiany zdjecie i sciezka
+logo_image = ctk.CTkImage(Image.open(r".\images\logo.jpg"), size=(90, 90)) # do podmiany zdjecie i sciezka
+logo_button = ctk.CTkLabel(master=root, text="", image=logo_image)
+logo_button.place(x=2.5,y=0)
+
+sign_out_image = ctk.CTkImage(Image.open(r".\images\sign_out.png"), size=(80, 80)) # do podmiany zdjecie i sciezka
 sign_out_button = ctk.CTkButton(master=root, text="", image=sign_out_image, fg_color="#181818", width=80, height=80, command=sign_out)
 sign_out_button.place(x=0,y=840)
 
-settings_image = ctk.CTkImage(Image.open("sett.png"), size=(80, 80)) # do podmiany zdjecie i sciezka
+settings_image = ctk.CTkImage(Image.open(r".\images\sett.png"), size=(80, 80)) # do podmiany zdjecie i sciezka
 settings_button = ctk.CTkButton(master=root, text="", image=settings_image, fg_color="#181818", width=80, height=80, command=settings)
 settings_button.place(x=0,y=920)
 
