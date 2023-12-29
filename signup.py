@@ -4,6 +4,7 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue") 
   
 sign_up = ctk.CTk() 
+sign_up.iconbitmap('icon.ico')
 sign_up.title("DebtyVibe") 
 window_width = 400
 window_height = 400

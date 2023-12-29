@@ -1,9 +1,11 @@
 from modules import *
+from PIL import ImageTk,Image
 
 ctk.set_appearance_mode("dark") 
 ctk.set_default_color_theme("dark-blue") 
   
 sign_in = ctk.CTk() 
+sign_in.iconbitmap('icon.ico')
 sign_in.title("DebtyVibe") 
 window_width = 500
 window_height = 500
@@ -41,13 +43,11 @@ login_frame.pack(pady=20,padx=40,fill='both',expand=True)
 signin_label = ctk.CTkLabel(master=login_frame,text='Zaloguj się!') 
 signin_label.pack(pady=12,padx=10) 
   
-  
 user_entry= ctk.CTkEntry(master=login_frame,placeholder_text="Username") 
 user_entry.pack(pady=12,padx=10) 
   
 user_pass= ctk.CTkEntry(master=login_frame,placeholder_text="Password",show="*") 
 user_pass.pack(pady=12,padx=10) 
-  
   
 login_btn = ctk.CTkButton(master=login_frame,text='Login',command=sign_in_def) 
 login_btn.pack(pady=12,padx=10) 
