@@ -1,5 +1,4 @@
-##⚡Czym jest Soundplayer?
-## 
+#⚡Czym jest Soundplayer?
 Soundplayer jest to aplikacja przeznaczona do odtwarzania muzyki.
 # 🧬 Wymagania systemowe
 Aby uruchomić aplikację, potrzebujesz zainstalować następujące komponenty:
