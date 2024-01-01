@@ -1,7 +1,7 @@
 ##⚡Czym jest Soundplayer?
 ## 
 Soundplayer jest to aplikacja przeznaczona do odtwarzania muzyki.
-##🧬 Wymagania systemowe
+# 🧬 Wymagania systemowe
 Aby uruchomić aplikację, potrzebujesz zainstalować następujące komponenty:
 ```
 Python 3.x
@@ -10,7 +10,7 @@ mysql-connector-python
 Pillow
 pygame
 ```
-##:electric_plug: Połączenie z bazą danych
+# :electric_plug: Połączenie z bazą danych
 Aplikacja łączy się z bazą danych MySQL za pomocą biblioteki mysql.connector.
 ```
 host="localhost",
@@ -18,7 +18,7 @@ host="localhost",
         password="",
         database="debtyvibe_database"
 ```
-##🤝 Autorzy
+# 🤝 Autorzy
 Funkcjonalność - Izabela Majcherczyk
 Strony HTML - Izabela Majcherczyk
 Interfejs - Kamila Wydra
