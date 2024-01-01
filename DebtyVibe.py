@@ -32,6 +32,9 @@ class MusicPlayer:
         self.songtracks = os.listdir()
         self.song_index = 0
 
+        os.chdir(r"C:\Users\PC\Documents\GitHub\Soundplayer\images")
+        self.images = os.listdir()
+
 
         settings_frame = ctk.CTkFrame(master=root, 
                                     width=100,
@@ -93,7 +96,7 @@ class MusicPlayer:
         songtrack = Label(trackframe, textvariable=self.track, width=20, font=("times new roman", 18, "bold"), bg="#181818", fg="#720404").grid(row=0, column=1, padx=10, pady=5)
         trackstatus = Label(trackframe, textvariable=self.status, font=("times new roman", 18, "bold"), bg="#181818", fg="#720404").grid(row=0, column=2, padx=10, pady=5)
 
-        play_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\playbtn.png"), 
+        play_image = ctk.CTkImage(Image.open(r"..\images\playbtn.png"), 
                           size=(40,40))
         play_btn = ctk.CTkButton(master=root, text="", 
                          image=play_image, 
@@ -103,7 +106,7 @@ class MusicPlayer:
                          command=self.playsong)
         play_btn.place(x=600, y=0)
 
-        prev_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\prevbtn.png"), 
+        prev_image = ctk.CTkImage(Image.open(r"..\images\prevbtn.png"), 
                           size=(40,40))
         prev_btn = ctk.CTkButton(master=root, 
                                 text="", 
@@ -114,7 +117,7 @@ class MusicPlayer:
                                 command=self.prevsong)
         prev_btn.place(x=420, y=780)
 
-        next_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\nextbtn.png"), 
+        next_image = ctk.CTkImage(Image.open(r"..\images\nextbtn.png"), 
                                 size=(40,40))
         next_btn = ctk.CTkButton(master=root, 
                                 text="", 
@@ -125,7 +128,7 @@ class MusicPlayer:
                                 command=self.nextsong)
         next_btn.place(x=630, y=780)
 
-        unpause_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\playbtn.png"),
+        unpause_image = ctk.CTkImage(Image.open(r"..\images\playbtn.png"),
                                      size=(40,40))
         unpause_btn = ctk.CTkButton(master=root, 
                              text="",  
@@ -136,7 +139,7 @@ class MusicPlayer:
                              command=self.unpausesong)
         unpause_btn.place(x=490, y=780)
         
-        pause_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\pausebtn.png"),
+        pause_image = ctk.CTkImage(Image.open(r"..\images\pausebtn.png"),
                                    size=(40,40))
         pause_btn = ctk.CTkButton(master=root, 
                            text="",
@@ -147,7 +150,7 @@ class MusicPlayer:
                            command=self.pausesong) 
         pause_btn.place(x=560, y=780)
 
-        loop_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\loopbtn.png"), 
+        loop_image = ctk.CTkImage(Image.open(r"..\images\loopbtn.png"), 
                           size=(40,40))
         loop_btn = ctk.CTkButton(master=root, 
                                 text="", 
@@ -185,14 +188,14 @@ class MusicPlayer:
         for track in songtracks:
             self.playlist.insert(END, track)
         
-        logo_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\logo.png"), 
+        logo_image = ctk.CTkImage(Image.open(r"..\images\logo.png"), 
                           size=(90, 90)) # do podmiany zdjecie i sciezka
         logo_button = ctk.CTkLabel(master=root, 
                                 text="", 
                                 image=logo_image)
         logo_button.place(x=0,y=0)
 
-        sign_out_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\sign_out.png"), 
+        sign_out_image = ctk.CTkImage(Image.open(r"..\images\sign_out.png"), 
                                     size=(80, 80)) # do podmiany zdjecie i sciezka
         sign_out_button = ctk.CTkButton(master=root, 
                                         text="", 
@@ -203,7 +206,7 @@ class MusicPlayer:
                                         command=self.sign_out)
         sign_out_button.place(x=0,y=840)
 
-        settings_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\sett.png"),
+        settings_image = ctk.CTkImage(Image.open(r"..\images\sett.png"),
                                     size=(80, 80)) # do podmiany zdjecie i sciezka
         settings_button = ctk.CTkButton(master=root, 
                                         text="", 
@@ -214,7 +217,7 @@ class MusicPlayer:
                                         command=self.settings)
         settings_button.place(x=0,y=920)
 
-        support_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\support.png"),
+        support_image = ctk.CTkImage(Image.open(r"..\images\support.png"),
                                     size=(80, 80)) # do podmiany zdjecie i sciezka
         support_button = ctk.CTkButton(master=root,
                                     text="", 
@@ -241,7 +244,7 @@ class MusicPlayer:
 
         fav_song_label.place(x=1030,y=650)
 
-        tlo_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\tlo.png"), size=(400,400))   # reklama pingolingo
+        tlo_image = ctk.CTkImage(Image.open(r"..\images\tlo.png"), size=(400,400))   # reklama pingolingo
         tlo_btn = ctk.CTkLabel(master=root, 
                             text="", 
                             image=tlo_image, 
@@ -271,7 +274,7 @@ class MusicPlayer:
 
         pingolingo_label.place(x=455,y=100)
 
-        vol_image = ctk.CTkImage(Image.open(r"C:\Users\PC\Documents\GitHub\Soundplayer\volbtn.png"))
+        vol_image = ctk.CTkImage(Image.open(r"..\images\volbtn.png"))
         vol_label = ctk.CTkLabel(master=root,
                                  text="",
                                  image=vol_image)
@@ -340,9 +343,6 @@ class MusicPlayer:
     def add(self):  
         url = r'https://github.com/KamaXpl/Pingolingo'
         webbrowser.open_new_tab(url)
-
-    
-    
 
 ctk.set_appearance_mode("dark") 
 ctk.set_default_color_theme("dark-blue")
