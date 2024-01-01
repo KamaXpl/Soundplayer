@@ -1,14 +1,5 @@
-import customtkinter as ctk 
-import tkinter.messagebox as tkmb 
-import mysql.connector
-from tkinter import *
-import pygame
-from pygame import mixer
-import os
-import webbrowser
-import random
+from modules import *
 from PIL import ImageTk,Image
-import time
 
 class MusicPlayer:
     def __init__(self, root):
@@ -28,11 +19,11 @@ class MusicPlayer:
         self.status = StringVar()
 
          # Add these lines
-        os.chdir(r"C:\Users\PC\Documents\GitHub\Soundplayer\music")
+        os.chdir(r"C:\Users\games\Documents\GitHub\Soundplayer\music")
         self.songtracks = os.listdir()
         self.song_index = 0
 
-        os.chdir(r"C:\Users\PC\Documents\GitHub\Soundplayer\images")
+        os.chdir(r"C:\Users\games\Documents\GitHub\Soundplayer\images")
         self.images = os.listdir()
 
 
@@ -96,15 +87,6 @@ class MusicPlayer:
         songtrack = Label(trackframe, textvariable=self.track, width=20, font=("times new roman", 18, "bold"), bg="#181818", fg="#720404").grid(row=0, column=1, padx=10, pady=5)
         trackstatus = Label(trackframe, textvariable=self.status, font=("times new roman", 18, "bold"), bg="#181818", fg="#720404").grid(row=0, column=2, padx=10, pady=5)
 
-        play_image = ctk.CTkImage(Image.open(r"..\images\playbtn.png"), 
-                          size=(40,40))
-        play_btn = ctk.CTkButton(master=root, text="", 
-                         image=play_image, 
-                         width=30, 
-                         height=30, 
-                         fg_color="#181818", 
-                         command=self.playsong)
-        play_btn.place(x=600, y=0)
 
         prev_image = ctk.CTkImage(Image.open(r"..\images\prevbtn.png"), 
                           size=(40,40))
@@ -168,6 +150,7 @@ class MusicPlayer:
                                     border_color="#161616", 
                                     border_width=7)   # ramka playlisty
         song_list_frame.place(x=1020,y=0)
+
         scrol_y = Scrollbar(song_list_frame, orient=VERTICAL)
         self.playlist = Listbox(song_list_frame, 
                                 yscrollcommand=scrol_y.set, 
@@ -183,7 +166,10 @@ class MusicPlayer:
         scrol_y.place(x=1000, y=100)
         scrol_y.config(command=self.playlist.yview)
         self.playlist.place(x=10, y=70)
-        os.chdir(r"C:\Users\PC\Documents\GitHub\Soundplayer\music")
+
+    
+
+        os.chdir(r"C:\Users\games\Documents\GitHub\Soundplayer\music")
         songtracks = os.listdir()
         for track in songtracks:
             self.playlist.insert(END, track)
@@ -195,16 +181,6 @@ class MusicPlayer:
                                 image=logo_image)
         logo_button.place(x=0,y=0)
 
-        sign_out_image = ctk.CTkImage(Image.open(r"..\images\sign_out.png"), 
-                                    size=(80, 80)) # do podmiany zdjecie i sciezka
-        sign_out_button = ctk.CTkButton(master=root, 
-                                        text="", 
-                                        image=sign_out_image, 
-                                        fg_color="#181818", 
-                                        width=80, 
-                                        height=80, 
-                                        command=self.sign_out)
-        sign_out_button.place(x=0,y=840)
 
         settings_image = ctk.CTkImage(Image.open(r"..\images\sett.png"),
                                     size=(80, 80)) # do podmiany zdjecie i sciezka
@@ -217,16 +193,6 @@ class MusicPlayer:
                                         command=self.settings)
         settings_button.place(x=0,y=920)
 
-        support_image = ctk.CTkImage(Image.open(r"..\images\support.png"),
-                                    size=(80, 80)) # do podmiany zdjecie i sciezka
-        support_button = ctk.CTkButton(master=root,
-                                    text="", 
-                                    image=support_image,
-                                    fg_color="#181818",
-                                    width=80,
-                                    height=80,
-                                    command=self.support)
-        support_button.place(x=0,y=760)
 
         playlist_label = ctk.CTkLabel(master=root, 
                               text="Playlist", 
@@ -253,6 +219,16 @@ class MusicPlayer:
                             fg_color="#181818")
 
         tlo_btn.place(x=360,y=100)
+
+        play_image = ctk.CTkImage(Image.open(r"..\images\playlistbtn.png"), 
+                          size=(40,40))
+        play_btn = ctk.CTkButton(master=root, text="", 
+                         image=play_image, 
+                         width=30, 
+                         height=30, 
+                         fg_color="#181818", 
+                         command=self.playsong)
+        play_btn.place(x=1200, y=10)
 
         click_me_btn = ctk.CTkButton(master=root,
                                     text="Click me",
@@ -331,13 +307,51 @@ class MusicPlayer:
             root.destroy()
             from signin import sign_in
 
-    def settings(self):  # funkcja ustawienia
+    def settings(self):  # funkcja ustawienia 
         settings_wind = ctk.CTkToplevel()
-        settings_wind.geometry('300x300')
+        settings_wind.geometry('500x200')
+
+        sign_out_image = ctk.CTkImage(Image.open(r"..\images\sing_out.png"), 
+                                    size=(100, 100)) 
+        sign_out_button = ctk.CTkButton(master=settings_wind, 
+                                        text="", 
+                                        image=sign_out_image, 
+                                        fg_color="#181818", 
+                                        width=80, 
+                                        height=80, 
+                                        command=self.sign_out)
+        sign_out_button.place(x=30,y=50)
+
+        support_image = ctk.CTkImage(Image.open(r"..\images\support.png"),
+                                    size=(100, 100)) 
+        support_button = ctk.CTkButton(master=settings_wind,
+                                    text="", 
+                                    image=support_image,
+                                    fg_color="#181818",
+                                    width=80,
+                                    height=80,
+                                    command=self.support)
+        support_button.place(x=200,y=50)
+
+        premium_image = ctk.CTkImage(Image.open(r"..\images\premium.png"),
+                                    size=(100, 100)) 
+        premium_button = ctk.CTkButton(master=settings_wind,
+                                    text="", 
+                                    image=premium_image,
+                                    fg_color="#181818",
+                                    width=80,
+                                    height=80,
+                                    command=self.premium)
+        premium_button.place(x=200,y=50)
+
         settings_wind.mainloop()
 
     def support(self):
-        url = r'file:///C:\Users\PC\Documents\GitHub\Soundplayer\support.html'
+        url = r'file:///C:\Users\games\Documents\GitHub\Soundplayer\support.html'
+        webbrowser.open_new_tab(url)
+
+    def premium(self):
+        url = r'file:///C:\Users\games\Documents\GitHub\Soundplayer\premium.html'
         webbrowser.open_new_tab(url)
 
     def add(self):  
