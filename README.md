@@ -21,8 +21,13 @@ host="localhost",
 ```
 # 🤝 Autorzy
 Funkcjonalność - Izabela Majcherczyk
+
 Strony HTML - Izabela Majcherczyk
+
 Interfejs - Kamila Wydra
+
 Baza danych - Kamila Wydra
+
 Grafika - Kamila Wydra
+
 Dokumentacja - Kamila Wydra
