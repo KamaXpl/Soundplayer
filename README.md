@@ -6,7 +6,7 @@ Soundplayer jest to aplikacja przeznaczona do odtwarzania muzyki.
 Aby uruchomić aplikację, potrzebujesz zainstalować następujące komponenty:
 ```
 Python 3.x
-Tkinter
+customtkinter
 mysql-connector-python
 Pillow
 pygame
