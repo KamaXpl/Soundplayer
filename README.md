@@ -15,9 +15,9 @@ pygame
 Aplikacja łączy się z bazą danych MySQL za pomocą biblioteki mysql.connector.
 ```
 host="localhost",
-        user="root",
-        password="",
-        database="debtyvibe_database"
+user="root",
+password="",
+database="debtyvibe_database"
 ```
 # 🤝 Autorzy
 Funkcjonalność - Izabela Majcherczyk
