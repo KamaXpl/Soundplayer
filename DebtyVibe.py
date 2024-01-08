@@ -1,7 +1,6 @@
 from modules import *
 from PIL import ImageTk,Image
 
-
 class MusicPlayer:
     def __init__(self, root):
         self.root = root
@@ -19,11 +18,11 @@ class MusicPlayer:
         self.track = StringVar()
         self.status = StringVar()
 
-        os.chdir(r"C:\xampp\htdocs\Wydra\Soundplayer\music")
+        os.chdir(r"C:\Users\PC\Documents\GitHub\Soundplayer\music")
         self.songtracks = os.listdir()
         self.song_index = 0
 
-        os.chdir(r"C:\xampp\htdocs\Wydra\Soundplayer\images")
+        os.chdir(r"C:\Users\PC\Documents\GitHub\Soundplayer\images")
         self.images = os.listdir()
 
 
@@ -96,7 +95,7 @@ class MusicPlayer:
                                 height=30, 
                                 fg_color="#181818", 
                                 command=self.prevsong)
-        prev_btn.place(x=420, y=780)
+        prev_btn.place(x=460, y=780)
 
         next_image = ctk.CTkImage(Image.open(r"..\images\nextbtn.png"), 
                                 size=(40,40))
@@ -107,30 +106,23 @@ class MusicPlayer:
                                 height=30, 
                                 fg_color="#181818", 
                                 command=self.nextsong)
-        next_btn.place(x=630, y=780)
+        next_btn.place(x=590, y=780)
 
+        pause_image = ctk.CTkImage(Image.open(r"..\images\pausebtn.png"),
+                                     size=(40,40))
+        
         unpause_image = ctk.CTkImage(Image.open(r"..\images\playbtn.png"),
                                      size=(40,40))
-        unpause_btn = ctk.CTkButton(master=root, 
+        
+        pauseplay_btn = ctk.CTkButton(master=root, 
                              text="",  
                              image=unpause_image,
                              width=30, 
                              height=30, 
                              fg_color="#181818", 
-                             command=self.unpausesong)
-        unpause_btn.place(x=490, y=780)
+                             command=self.pauseplay)
+        pauseplay_btn.place(x=525, y=780)
         
-        pause_image = ctk.CTkImage(Image.open(r"..\images\pausebtn.png"),
-                                   size=(40,40))
-        pause_btn = ctk.CTkButton(master=root, 
-                           text="",
-                           image=pause_image, 
-                           width=30, 
-                           height=30,  
-                           fg_color="#181818",
-                           command=self.pausesong) 
-        pause_btn.place(x=560, y=780)
-
         loop_image = ctk.CTkImage(Image.open(r"..\images\loopbtn.png"), 
                           size=(40,40))
         loop_btn = ctk.CTkButton(master=root, 
@@ -193,15 +185,7 @@ class MusicPlayer:
         scrol_z.config(command=self.favplaylist.yview)
         self.favplaylist.place(x=3, y=1)
 
-        soon = ctk.CTkLabel(master=root,
-                            text="Już w krótce!",
-                            fg_color="#181818", 
-                            text_color="#BA0404", 
-                            font=("Impact", 48))
-        
-        soon.place(x=1350,y=820)
-
-        os.chdir(r"C:\xampp\htdocs\Wydra\Soundplayer\music")
+        os.chdir(r"C:\Users\PC\Documents\GitHub\Soundplayer\music")
         songtracks = os.listdir()
         for track in songtracks:
             self.playlist.insert(END, track)
@@ -293,6 +277,16 @@ class MusicPlayer:
                          command=self.playsong)
         play_btn.place(x=1200, y=10)
 
+        favplay_image = ctk.CTkImage(Image.open(r"..\images\playlistbtn.png"), 
+                          size=(40,40))
+        favplay_btn = ctk.CTkButton(master=root, text="", 
+                         image=play_image, 
+                         width=30, 
+                         height=30, 
+                         fg_color="#181818", 
+                         command=self.playsong)
+        favplay_btn.place(x=1200, y=67500)
+
         click_me_btn = ctk.CTkButton(master=root,
                                     text="Click me",
                                     width=200,
@@ -328,6 +322,30 @@ class MusicPlayer:
                                command=self.change_volume)
         self.volume_scale.place(x=450, y=850)
 
+        add_song_button = ctk.CTkButton(self.root,
+                                         text="Add Song",
+                                           command=self.add_song_to_playlist,
+                                             bg_color="#720404",
+                                               fg_color="#720404",
+                                                 hover_color="#720404")
+        add_song_button.place(x=1725, y=25)
+
+        soon = ctk.CTkLabel(master=root,
+                            text="Już niedługo!",
+                            fg_color="#181818", 
+                            text_color="#BA0404", 
+                            font=("Impact", 48))
+        
+        soon.place(x=1350,y=820)
+
+
+    def add_song_to_playlist(self):
+        file_paths = filedialog.askopenfilenames(filetypes=[("MP3 files", "*.mp3")])
+        if file_paths:
+            for path in file_paths:
+                self.playlist.insert(END, path.split("/")[-1])
+                print(f"Added songs to playlist: {file_paths}")
+
     def change_volume(self, event=None):
         pygame.mixer.music.set_volume(self.volume.get())
 
@@ -340,13 +358,13 @@ class MusicPlayer:
         pygame.mixer.music.load(self.songtracks[self.song_index])
         pygame.mixer.music.play()
 
-    def pausesong(self):
-        self.status.set("-Paused")
-        pygame.mixer.music.pause()
-
-    def unpausesong(self):
-        self.status.set("-Playing")
-        pygame.mixer.music.unpause()
+    def pauseplay(self):
+        if pygame.mixer.music.get_busy():
+            pygame.mixer.music.pause()
+            self.status.set("-Paused")
+        else:
+            pygame.mixer.music.unpause()
+            self.status.set("-Playing")
 
     def nextsong(self):
         self.song_index += 1
@@ -364,8 +382,14 @@ class MusicPlayer:
         self.playsong()
     
     def loop_song(self):
-        self.status.set("-Looped")
-        pygame.mixer.music.play(-1)  # -1 means the song will loop indefinitely
+        if pygame.mixer.music.get_busy():
+            pygame.mixer.music.play(-1)
+            self.status.set("-Looped")
+        else:
+            pygame.mixer.music.play(1)
+            self.status.set("-Playing")
+
+        self.update_track_label()
     
     def sign_out(self):  # funkcja wyloguj
         answer = tkmb.askquestion(title='DebtyVibe',message='Czy na pewno chcesz sie wylogować?')
@@ -379,11 +403,11 @@ class MusicPlayer:
         settings_wind.mainloop()
 
     def support(self):
-        url = r'file:///C:\xampp\htdocs\Wydra\Soundplayer\support.html'
+        url = r'file:///C:\Users\PC\Documents\GitHub\Soundplayer\support.html'
         webbrowser.open_new_tab(url)
 
     def premium(self):
-        url = r'file:///C:\xampp\htdocs\Wydra\Soundplayer\premium.html'
+        url = r'file:///C:\Users\PC\Documents\GitHub\Soundplayer\premium.html'
         webbrowser.open_new_tab(url)
 
     def add(self):  
